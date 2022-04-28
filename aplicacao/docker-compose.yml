@@ -10,3 +10,12 @@ services:
       POSTGRES_USER: postgres
     ports:
       - 5432:5432
+
+  app:
+    depends_on:
+      - db
+    container_name: app
+    build: .
+    command: bash -c "rails db:setup && rails server"
+    ports:
+      - "3000:8080"
