@@ -16,6 +16,6 @@ services:
       - db
     container_name: app
     build: .
-    command: bash -c "rails db:setup && rails server"
+    command: bash -c "rails db:setup && rails server -b 0.0.0.0"
     ports:
-      - "3000:8080"
+      - "3000:3000"
