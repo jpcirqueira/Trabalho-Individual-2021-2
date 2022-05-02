@@ -1,0 +1,24 @@
+name: "Ruby"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  ci:
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: build
+        working-directory: ./aplicacao
+        run: docker-compose up -d 
+
+      - name: Run tests
+        working-directory: ./aplicacao
+        run: docker-compose run app bash -c "rails db:reset; rspec"
+
+      - name: Run Lint
+        working-directory: ./aplicacao
+        run: docker-compose run app bash -c "gem install rubocop; rubocop --fail-level F"
