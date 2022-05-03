@@ -5,10 +5,12 @@ on:
     branches: [ main ]
 
 jobs:
+  use:
+    uses: jpcirqueira/Trabalho-Individual-2021-2/blob/main/.github/workflows/ci.yml@main
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-    uses: ./ci.yml
+    
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
